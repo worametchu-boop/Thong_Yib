@@ -2,141 +2,141 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Birthday Surprise</title>
+<title>Happy Birthday</title>
 
 <style>
 
 body{
-  margin:0;
-  height:100vh;
-  background:linear-gradient(135deg,#D4D2F2,#E0E0F3);
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  font-family:'Segoe UI',sans-serif;
-  overflow:hidden;
+margin:0;
+height:100vh;
+background:linear-gradient(135deg,#D4D2F2,#E0E0F3);
+display:flex;
+justify-content:center;
+align-items:center;
+font-family:'Segoe UI',sans-serif;
+overflow:hidden;
 }
 
 /* ปุ่มเริ่ม */
 button{
-  padding:20px 40px;
-  font-size:22px;
-  border:none;
-  border-radius:30px;
-  background:#6c63ff;
-  color:white;
-  cursor:pointer;
-  transition:0.3s;
+padding:20px 40px;
+font-size:22px;
+border:none;
+border-radius:30px;
+background:#6c63ff;
+color:white;
+cursor:pointer;
+transition:0.3s;
 }
 
 button:hover{
-  transform:scale(1.1);
+transform:scale(1.1);
 }
 
-/* หน้า birthday */
+/* หน้า Happy Birthday */
 #mainContent{
-  display:none;
-  text-align:center;
-  color:#5a4fb3;
+display:none;
+text-align:center;
+color:#5a4fb3;
 }
 
 /* ตัวหนังสือ */
 h1{
-  font-size:60px;
-  letter-spacing:3px;
-  animation:floatText 3s ease-in-out infinite;
+font-size:60px;
+letter-spacing:3px;
+animation:floatText 3s ease-in-out infinite;
 }
 
 @keyframes floatText{
-  0%{transform:translateY(0);}
-  50%{transform:translateY(-15px);}
-  100%{transform:translateY(0);}
+0%{transform:translateY(0);}
+50%{transform:translateY(-15px);}
+100%{transform:translateY(0);}
 }
 
 /* ลูกโป่ง */
 .balloon{
-  position:absolute;
-  bottom:-100px;
-  width:40px;
-  height:50px;
-  border-radius:50%;
-  animation:rise 6s linear infinite;
+position:absolute;
+bottom:-100px;
+width:40px;
+height:50px;
+border-radius:50%;
+animation:rise 6s linear infinite;
 }
 
 .balloon::after{
-  content:"";
-  position:absolute;
-  width:2px;
-  height:40px;
-  background:#999;
-  left:50%;
-  top:50px;
+content:"";
+position:absolute;
+width:2px;
+height:40px;
+background:#999;
+left:50%;
+top:50px;
 }
 
 @keyframes rise{
-  0%{transform:translateY(0);opacity:1;}
-  100%{transform:translateY(-120vh);opacity:0;}
-}
-
-/* กล่องซอง */
-.envelopeBox{
-  margin-top:30px;
+0%{transform:translateY(0);opacity:1;}
+100%{transform:translateY(-120vh);opacity:0;}
 }
 
 /* ซองจดหมาย */
 .envelope{
-  font-size:110px;
-  cursor:pointer;
-  animation:bounce 1.5s infinite;
-  text-shadow:0 0 15px rgba(255,255,255,0.9);
-  transition:0.3s;
-}
-
-.envelope:hover{
-  transform:scale(1.3);
+font-size:110px;
+cursor:pointer;
+animation:bounce 1.5s infinite;
 }
 
 @keyframes bounce{
-  0%{transform:translateY(0);}
-  50%{transform:translateY(-10px);}
-  100%{transform:translateY(0);}
+0%{transform:translateY(0);}
+50%{transform:translateY(-10px);}
+100%{transform:translateY(0);}
 }
 
-/* ข้อความบอกให้กด */
 .hint{
-  font-size:20px;
-  color:#555;
-  animation:blink 1.5s infinite;
+font-size:20px;
+color:#555;
 }
 
-@keyframes blink{
-  0%{opacity:1;}
-  50%{opacity:0.4;}
-  100%{opacity:1;}
-}
-
-/* กล่องจดหมาย (ทับซอง) */
+/* กล่องข้อความ */
 .letter{
-  display:none;
-  position:absolute;
-  top:50%;
-  left:50%;
-  transform:translate(-50%,-50%);
-  background:white;
-  padding:30px;
-  border-radius:15px;
-  width:320px;
-  box-shadow:0 10px 25px rgba(0,0,0,0.3);
-  color:#444;
-  font-size:18px;
-  z-index:10;
-  animation:pop 0.4s ease;
+display:none;
+position:absolute;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+background:rgb(199, 153, 252);
+padding:30px;
+border-radius:15px;
+width:320px;
+box-shadow:0 10px 25px rgba(0,0,0,0.3);
+color:#444;
+font-size:18px;
+z-index:10;
 }
 
-/* animation เด้งตอนเปิด */
-@keyframes pop{
-  0%{transform:translate(-50%,-50%) scale(0.5);}
-  100%{transform:translate(-50%,-50%) scale(1);}
+/* รูปซ้ายขวา */
+.sideImg{
+display:none;
+position:absolute;
+top:50%;
+transform:translateY(-50%);
+width:300px; /* เพิ่มขนาดรูป */
+animation:floatImg 3s ease-in-out infinite;
+}
+
+/* รูปซ้าย */
+.leftImg{
+left:120px;
+}
+
+/* รูปขวา */
+.rightImg{
+right:120px;
+}
+
+@keyframes floatImg{
+0%{transform:translateY(-50%) translateY(0);}
+50%{transform:translateY(-50%) translateY(-10px);}
+100%{transform:translateY(-50%) translateY(0);}
 }
 
 </style>
@@ -144,17 +144,25 @@ h1{
 
 <body>
 
+<!-- รูปซ้าย -->
+<img src="left.png" class="sideImg leftImg" id="leftImg">
+
+<!-- รูปขวา -->
+<img src="right.png" class="sideImg rightImg" id="rightImg">
+
+<!-- ปุ่มเริ่ม -->
 <div id="startScreen">
 <button id="startBtn">🎁 Click for Surprise 🎁</button>
 </div>
 
+<!-- หน้า Happy Birthday -->
 <div id="mainContent">
 
 <h1>🎉 Happy Birthday 🎂</h1>
 
-<div class="envelopeBox">
 <div class="envelope" id="envelope">✉️</div>
 <p class="hint">กดเปิดจดหมาย 💌</p>
+
 </div>
 
 <div class="letter" id="letter">
@@ -164,22 +172,28 @@ h1{
 
 </div>
 
-</div>
-
 <script>
 
-const startBtn = document.getElementById("startBtn");
-const startScreen = document.getElementById("startScreen");
-const mainContent = document.getElementById("mainContent");
-const envelope = document.getElementById("envelope");
-const letter = document.getElementById("letter");
+const startBtn=document.getElementById("startBtn");
+const startScreen=document.getElementById("startScreen");
+const mainContent=document.getElementById("mainContent");
+const envelope=document.getElementById("envelope");
+const letter=document.getElementById("letter");
+const leftImg=document.getElementById("leftImg");
+const rightImg=document.getElementById("rightImg");
 
-startBtn.onclick = () => {
+/* กดปุ่มเริ่ม */
+startBtn.onclick=()=>{
 startScreen.style.display="none";
 mainContent.style.display="block";
+
+/* แสดงรูป */
+leftImg.style.display="block";
+rightImg.style.display="block";
 }
 
-envelope.onclick = () => {
+/* เปิดจดหมาย */
+envelope.onclick=()=>{
 letter.style.display="block";
 }
 
