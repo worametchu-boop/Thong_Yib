@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Happy Birthday</title>
+
+<style>
+
+body{
+margin:0;
+height:100vh;
+background:linear-gradient(135deg,#808080,#A9A9A9);
+display:flex;
+justify-content:center;
+align-items:center;
+font-family:'Segoe UI',sans-serif;
+overflow:hidden;
+}
+
+
+button{
+padding:18px 40px;
+font-size:22px;
+border:none;
+border-radius:30px;
+background:#696969;
+color:white;
+cursor:pointer;
+transition:0.3s;
+}
+
+button:hover{
+transform:scale(1.1);
+}
+
+
+#mainContent{
+display:none;
+text-align:center;
+color:#808080;
+}
+
+
+h1{
+font-size:60px;
+letter-spacing:3px;
+animation:floatText 3s ease-in-out infinite;
+}
+
+@keyframes floatText{
+0%{transform:translateY(0);}
+50%{transform:translateY(-15px);}
+100%{transform:translateY(0);}
+}
+
+/* ซองจดหมาย */
+.envelope{
+font-size:100px;
+cursor:pointer;
+animation:bounce 1.5s infinite;
+}
+
+@keyframes bounce{
+0%{transform:translateY(0);}
+50%{transform:translateY(-10px);}
+100%{transform:translateY(0);}
+}
+
+.hint{
+font-size:20px;
+color:#444;
+}
+
+/* กล่องรูป */
+.imageBox{
+display:flex;
+justify-content:center;
+gap:40px;
+margin-top:30px;
+}
+
+/* รูป */
+.sideImg{
+display:none;
+width:18vw;
+max-width:220px;
+height:auto;
+animation:floatImg 3s ease-in-out infinite;
+}
+
+@keyframes floatImg{
+0%{transform:translateY(0);}
+50%{transform:translateY(-12px);}
+100%{transform:translateY(0);}
+}
+
+/* กล่องข้อความ */
+.letter{
+display:none;
+position:absolute;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+background:#696969;
+padding:30px;
+border-radius:15px;
+width:320px;
+box-shadow:0 10px 25px rgba(0,0,0,0.3);
+color:white;
+font-size:18px;
+z-index:10;
+}
+
+/* ลูกโป่ง */
+.balloon{
+position:absolute;
+bottom:-100px;
+width:40px;
+height:50px;
+border-radius:50%;
+animation:rise 6s linear infinite;
+}
+
+.balloon::after{
+content:"";
+position:absolute;
+width:2px;
+height:40px;
+background:#999;
+left:50%;
+top:50px;
+}
+
+@keyframes rise{
+0%{transform:translateY(0);opacity:1;}
+100%{transform:translateY(-120vh);opacity:0;}
+}
+
+/* มือถือ */
+@media (max-width:768px){
+
+h1{
+font-size:36px;
+}
+
+.imageBox{
+gap:20px;
+}
+
+.sideImg{
+width:35vw;
+}
+
+.envelope{
+font-size:70px;
+}
+
+.letter{
+width:80%;
+font-size:16px;
+}
+
+}
+/* ดาว */
+.star{
+position:absolute;
+width:4px;
+height:4px;
+background:white;
+border-radius:50%;
+animation:twinkle 2s infinite ease-in-out;
+}
+
+@keyframes twinkle{
+0%{opacity:0.2; transform:scale(1);}
+50%{opacity:1; transform:scale(1.8);}
+100%{opacity:0.2; transform:scale(1);}
+}
+
+.closeBtn{
+position:absolute;
+top:10px;
+right:15px;
+cursor:pointer;
+font-size:20px;
+}
+
+</style>
+</head>
+
+<body>
+
+ <audio id="music" src="birthday.mp3"></audio>
+
+<!-- ปุ่มเริ่ม -->
+<div id="startScreen">
+<button id="startBtn">🎁 Click for Surprise 🎁</button>
+</div>
+
+<!-- หน้า Happy Birthday -->
+<div id="mainContent">
+
+<h1>🎉 Happy Birthday 🎂</h1>
+<div class="envelope" id="envelope">✉️</div>
+<p class="hint">กดเปิดด้วย 💌</p>
+
+<!-- รูปอยู่ใต้ข้อความ -->
+<div class="imageBox">
+
+<img src="let1.png" class="sideImg" id="leftImg">
+<img src="right1.png" class="sideImg" id="rightImg">
+
+</div>
+
+</div>
+
+<!-- ข้อความ -->
+<div class="letter" id="letter">
+
+<span class="closeBtn" id="closeBtn">❌</span>
+
+สุขสันวันเกิดไอหมา <br><br>
+มีความสุขมากๆหละขอให้รักครั้งนี้เป็นไปได้ด้วยดี ข้อให้สุขภาพเเข็.เเรง ไม่เจฐ็ไม่ป่วย มีความสุขมากๆนะ
+
+
+</div>
+
+<script>
+
+const startBtn=document.getElementById("startBtn");
+const startScreen=document.getElementById("startScreen");
+const mainContent=document.getElementById("mainContent");
+const envelope=document.getElementById("envelope");
+const letter=document.getElementById("letter");
+const leftImg=document.getElementById("leftImg");
+const rightImg=document.getElementById("rightImg");
+const closeBtn=document.getElementById("closeBtn");
+
+startBtn.onclick=()=>{
+startScreen.style.display="none";
+mainContent.style.display="block";
+
+leftImg.style.display="block";
+rightImg.style.display="block";
+}
+
+envelope.onclick=()=>{
+letter.style.display="block";
+}
+
+/* ลูกโป่ง */
+function createBalloon(){
+
+const colors=["#ffb3c6","#c9c5ff","#b5ead7","#ffd6a5","#bde0fe"];
+
+const balloon=document.createElement("div");
+balloon.classList.add("balloon");
+
+balloon.style.background=
+colors[Math.floor(Math.random()*colors.length)];
+
+balloon.style.left=
+Math.random()*window.innerWidth+"px";
+
+balloon.style.animationDuration=
+(4+Math.random()*4)+"s";
+
+document.body.appendChild(balloon);
+
+setTimeout(()=>{
+balloon.remove();
+},8000);
+}
+
+setInterval(createBalloon,800);
+
+const music=document.getElementById("music");
+
+startBtn.onclick=()=>{
+startScreen.style.display="none";
+mainContent.style.display="block";
+
+leftImg.style.display="block";
+rightImg.style.display="block";
+
+music.play();
+}
+
+function createStar(){
+
+const star=document.createElement("div");
+star.classList.add("star");
+
+star.style.left=Math.random()*window.innerWidth+"px";
+star.style.top=Math.random()*window.innerHeight+"px";
+
+star.style.animationDuration=
+(1+Math.random()*2)+"s";
+
+document.body.appendChild(star);
+
+setTimeout(()=>{
+star.remove();
+},4000);
+
+}
+
+setInterval(createStar,120);
+
+closeBtn.onclick=()=>{
+letter.style.display="none";
+}
+
+</script>
+
+</body>
+</html>
